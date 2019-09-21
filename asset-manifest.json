@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/dice-chains/static/css/main.b100e6da.chunk.css",
+    "main.js": "/dice-chains/static/js/main.52d72911.chunk.js",
+    "main.js.map": "/dice-chains/static/js/main.52d72911.chunk.js.map",
+    "runtime-main.js": "/dice-chains/static/js/runtime-main.00b28775.js",
+    "runtime-main.js.map": "/dice-chains/static/js/runtime-main.00b28775.js.map",
+    "static/js/2.acac6566.chunk.js": "/dice-chains/static/js/2.acac6566.chunk.js",
+    "static/js/2.acac6566.chunk.js.map": "/dice-chains/static/js/2.acac6566.chunk.js.map",
+    "index.html": "/dice-chains/index.html",
+    "precache-manifest.a3cccc9697fa5310d55d199f36cd1f91.js": "/dice-chains/precache-manifest.a3cccc9697fa5310d55d199f36cd1f91.js",
+    "service-worker.js": "/dice-chains/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "/dice-chains/static/css/main.b100e6da.chunk.css.map",
+    "static/media/logo.svg": "/dice-chains/static/media/logo.25bf045c.svg"
+  }
+}
