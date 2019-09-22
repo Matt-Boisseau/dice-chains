@@ -1,0 +1,20 @@
+.Card {
+	box-sizing: border-box;
+
+	height: 250px;
+	width: 250px;
+	padding: 5px 15px;
+
+	background-color: black;
+	
+	border-radius: 20px;
+	border: 2px black solid;
+}
+
+.Card .header {
+	display: flex;
+	justify-content: space-between;
+
+	font-size: 20px;
+	font-weight: bold;
+}

@@ -1,0 +1,12 @@
+body {
+	background-color: gray;
+	color: white;
+}
+
+.CardTray {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	margin: -10px; /* must match margin of .CardSpot */
+}

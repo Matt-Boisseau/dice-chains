@@ -1,0 +1,9 @@
+.CardSpot {
+	height: 250px; /* must match height of .Card */
+	width: 250px; /* must match width of .Card */
+
+	margin: 10px; /* must match margin of .CardTray */
+
+	border-radius: 20px;
+	border: 2px black dashed;
+}
