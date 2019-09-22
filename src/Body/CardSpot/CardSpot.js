@@ -1,37 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CardSpot.css';
 import Card from '../Card/Card';
+import cardDictionary from '../Card/CardDictionary';
+import { useDrop } from 'react-dnd';
+import { ItemTypes } from '../Body';
 
-class CardSpot extends React.Component {
+const CardSpot = () => {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			card: props.card
-		};
-		this.handleClick = this.handleClick.bind(this);
+	const [cardID, setCardID] = useState(null);
+
+	const [{ isOver, canDrop }, drop] = useDrop({
+		accept: ItemTypes.Cards,
+		drop: (o) => {
+			setCardID(o.cardID);
+		}
+		//TODO: swap cardIDs when dropped onto an existing card
+		//(this should solve the issue of self-deleting, as well)
+	})
+
+	const setRandomCard = () => {
+
+		// Select a random card from the dictionary
+		let cardID = Object.keys(cardDictionary)[Math.floor(Math.random() * Object.keys(cardDictionary).length)];
+
+		setCardID(cardID);
 	}
 
-	handleClick() {
-		
-		let cardID = [
-			"Test Card A",
-			"Test Card B",
-			"Test Card C"
-		][Math.floor(Math.random()*3)];
-
-		this.setState(state => ({
-			card: <Card cardID={cardID}/>
-		}));
+	const removeCard = () => {
+		setCardID(null);
 	}
 
-	render() {
-		return (
-			<div className="CardSpot" onClick={this.handleClick}>
-				{this.state.card ? <span>{this.state.card}</span> : <span>no card</span>}
-			</div>
-		);
-	}
+	return (
+		<div
+			className="CardSpot"
+			onDoubleClick={setRandomCard}
+			ref={drop}
+		>
+			{cardID ? <Card cardID={cardID} removeCard={removeCard}/> : ""}
+		</div>
+	);
 }
 
 export default CardSpot;

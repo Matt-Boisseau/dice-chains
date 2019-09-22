@@ -1,49 +1,51 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useDrag } from 'react-dnd';
+import { ItemTypes } from '../Body';
 import './Card.css';
 import cardDictionary from './CardDictionary';
 
-class Card extends React.Component {
+const Card = (props) => {
 
-	constructor(props) {
+	const [card, setCard] = useState((props.cardID in cardDictionary) ? cardDictionary[props.cardID] : cardDictionary.NoCard)
 
-		super(props);
-
-		// If this card has a valid name prop, set its state to match that card
-		if(this.props.cardID in cardDictionary) {
-			let card = cardDictionary[this.props.cardID];
-			this.state = {
-				name: card.name,
-				cost: card.cost
-			};
+	const [{ isDragging, didDrop }, drag] = useDrag({
+		item: {
+			type: ItemTypes.Cards,
+			cardID: props.cardID
+		},
+		collect: monitor => ({
+			isDragging: monitor.isDragging(),
+			didDrop: monitor.didDrop()
+		}),
+		end: () => {
+			if(didDrop) {
+				props.removeCard();
+			}
 		}
+	});
 
-		// If this card doesn't have a valid name prop, set its state to default values
-		else {
-			this.state = {
-				name: "No Name",
-				cost: 0
-			};
-		}
-	}
+	// useEffect(() => {
+	// 	console.log(isDragging);
+	// }, [isDragging]);
 
-	setCard(cardID) { //TODO: Use class name instead of string
-		let targetCard = cardDictionary[cardID];
-		this.setState(state => ({
-			name: targetCard.name,
-			cost: targetCard.cost
-		}));
-	}
-
-	render() {
-		return (
-			<div className="Card">
-				<div className="header">
-					<span className="title">{this.state.name}</span>
-					<span className="cost">{this.state.cost}</span>
-				</div>
+	return (
+		<div
+			className={isDragging ? "Card isDragging" : "Card"}
+			onClick={() => card.effect()}
+			ref={drag}
+		>
+			<div className="header">
+				<span className="title">{card.name}</span>
+				<span className="cost">{card.cost}</span>
 			</div>
-		);
-	}
+			<div className="resources">
+			</div>
+			<div className="cardText">
+				<span className="effect">{card.effectText}</span>
+				<span className="links">{card.links}</span>
+			</div>
+		</div>
+	);
 }
 
 export default Card;

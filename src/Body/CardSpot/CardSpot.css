@@ -1,4 +1,6 @@
 .CardSpot {
+	box-sizing: border-box;
+
 	height: 250px; /* must match height of .Card */
 	width: 250px; /* must match width of .Card */
 

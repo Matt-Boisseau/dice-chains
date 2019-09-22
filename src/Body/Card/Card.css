@@ -3,12 +3,20 @@
 
 	height: 250px;
 	width: 250px;
-	padding: 5px 15px;
 
 	background-color: black;
 	
 	border-radius: 20px;
 	border: 2px black solid;
+	box-shadow: 4px 4px 5px #333;
+}
+
+.Card.isDragging {
+	opacity: 0;
+}
+
+.Card .header, .Card .cardText {
+	padding: 10px 15px;
 }
 
 .Card .header {
@@ -17,4 +25,10 @@
 
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.Card .resources {
+	height: 80px;
+
+	background-color: white;
 }
